@@ -1,8 +1,9 @@
+// 672115039 Metavee Aeinjang
+// this code using for adt & problem solving only
 package ADT;
 import java.io.*;
 import java.util.Scanner;
 
-// Node class for the linked list-based stack
 class Node {
     char data;
     Node next;
@@ -13,7 +14,6 @@ class Node {
     }
 }
 
-// Stack class using a linked list
 class Stack {
     private Node top;
 
@@ -48,10 +48,8 @@ class Stack {
     }
 }
 
-// Main class for Infix to Postfix conversion
 public class InfixToPostfix {
 
-    // Returns the precedence of operators
     private static int precedence(char op) {
         switch (op) {
             case '+': case '-': return 1;
@@ -61,12 +59,10 @@ public class InfixToPostfix {
         }
     }
 
-    // Checks if a character is an operand
     private static boolean isOperand(char c) {
         return Character.isLetterOrDigit(c);
     }
 
-    // Converts an infix expression to postfix notation
     public static String convertToPostfix(String infix) {
         StringBuilder postfix = new StringBuilder();
         Stack stack = new Stack();
@@ -90,7 +86,7 @@ public class InfixToPostfix {
                 if (!stack.isEmpty() && stack.peek() == '(') {
                     stack.pop(); // Remove '('
                 }
-            } else { // Operator encountered
+            } else { 
                 while (!stack.isEmpty() && precedence(c) <= precedence(stack.peek())) {
                     postfix.append(stack.pop());
                 }
@@ -98,7 +94,6 @@ public class InfixToPostfix {
             }
         }
 
-        // Pop any remaining operators
         while (!stack.isEmpty()) {
             postfix.append(stack.pop());
         }
@@ -106,7 +101,6 @@ public class InfixToPostfix {
         return postfix.toString();
     }
 
-    // Main method: Reads the file path from the command-line or prompts the user, then processes the file.
     public static void main(String[] args) {
         String filePath;
         if (args.length >= 1) {
